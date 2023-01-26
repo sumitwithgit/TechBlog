@@ -1,0 +1,56 @@
+create database techblog;
+use techblog;
+
+
+
+CREATE TABLE user (
+  id int NOT NULL AUTO_INCREMENT,
+  name varchar(100) NOT NULL,
+  email varchar(500) NOT NULL,
+  password varchar(300) NOT NULL,
+  gender varchar(10) NOT NULL,
+  about varchar(1000) DEFAULT 'Hey! I am Using Techblog.',
+  datetime timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  profile varchar(100) DEFAULT 'default.png',
+  PRIMARY KEY (id),
+  UNIQUE KEY email (email)
+);
+
+
+
+
+
+CREATE TABLE categories (
+  cid int NOT NULL AUTO_INCREMENT,
+  name varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  description varchar(1000) DEFAULT NULL,
+  PRIMARY KEY (cid)
+)
+
+
+
+
+
+
+
+CREATE TABLE posts (
+  pid int NOT NULL AUTO_INCREMENT,
+  pTitle varchar(1000) NOT NULL,
+  pContent varchar(1000) DEFAULT NULL,
+  pCode varchar(1000) DEFAULT NULL,
+  pPic varchar(1000) DEFAULT NULL,
+  pDate timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  cid int DEFAULT NULL,
+  uid int NOT NULL,
+  PRIMARY KEY (pid),
+  KEY cid (cid),
+  KEY uid (uid),
+  CONSTRAINT posts_ibfk_1 FOREIGN KEY (cid) REFERENCES categories (cid) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT posts_ibfk_2 FOREIGN KEY (uid) REFERENCES user (id) ON DELETE CASCADE ON UPDATE CASCADE
+) ;
+
+
+
+
+
+

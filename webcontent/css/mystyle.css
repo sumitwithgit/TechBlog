@@ -1,0 +1,10 @@
+@charset "UTF-8";
+.primary-background{
+	background:#0984e3;
+}
+.mynavbar{
+	position:sticky;
+	top: 0;
+	z-index: 1000;
+	
+}
